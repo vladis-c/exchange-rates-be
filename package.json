@@ -1,10 +1,10 @@
 {
   "name": "exchange-rates-be",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "1.0.0",
+  "description": "Nextjs Typescript API app for exchange rates",
+  "author": "Vladislav Cherkasheninov",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
