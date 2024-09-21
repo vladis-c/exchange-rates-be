@@ -1,23 +1,47 @@
-import {Injectable} from '@nestjs/common';
+import axios from 'axios';
+import {HttpException, Injectable} from '@nestjs/common';
 import {Rate} from './types';
-import rates from './FakeDb';
 
 @Injectable()
 export class ExchangeRatesService {
-  getExchangeRates(): Rate[] {
-    return rates;
+  private readonly baseUrl = process.env.SWOP_URL;
+  private readonly apiKey = process.env.SWOP_API_KEY;
+  private readonly ratesEndpoint = 'rates';
+
+  async getExchangeRates(): Promise<Rate[]> {
+    try {
+      const {data} = await axios.get<Rate[]>(
+        `${this.baseUrl}/${this.ratesEndpoint}`,
+        {
+          headers: {Authorization: `ApiKey ${this.apiKey}`},
+        },
+      );
+      return data;
+    } catch (error) {
+      throw new HttpException(
+        `Failed to get exchange rates: ${error.message}`,
+        error.response?.status || 500,
+      );
+    }
   }
-  getExchangeRate(
+
+  async getExchangeRate(
     base_currency: string,
     quote_currency: string,
-  ): Rate | undefined {
-    const foundPair = (rates as Rate[]).find(el => {
-      return (
-        el.base_currency === base_currency &&
-        el.quote_currency === quote_currency
+  ): Promise<Rate> {
+    try {
+      const {data} = await axios.get<Rate>(
+        `${this.baseUrl}/${this.ratesEndpoint}/${base_currency}/${quote_currency}`,
+        {
+          headers: {Authorization: `ApiKey ${this.apiKey}`},
+        },
       );
-    });
-
-    return foundPair;
+      return data;
+    } catch (error) {
+      throw new HttpException(
+        `Failed to fetch exchange rate for ${base_currency}/${quote_currency}: ${error.message}`,
+        error.response?.status || 500,
+      );
+    }
   }
 }

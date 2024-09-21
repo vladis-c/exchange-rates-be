@@ -7,7 +7,7 @@ export class ExchangeRatesController {
   constructor(private readonly exchangeRatesService: ExchangeRatesService) {}
 
   @Get()
-  getExchangeRates(): Rate[] {
+  getExchangeRates(): Promise<Rate[]> {
     return this.exchangeRatesService.getExchangeRates();
   }
 
@@ -15,7 +15,7 @@ export class ExchangeRatesController {
   getExchangeRate(
     @Param('base_currency') base_currency: string,
     @Param('quote_currency') quote_currency: string,
-  ): Rate {
+  ): Promise<Rate> {
     return this.exchangeRatesService.getExchangeRate(
       base_currency,
       quote_currency,
