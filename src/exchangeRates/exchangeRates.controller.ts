@@ -1,6 +1,6 @@
 import {Controller, Get, Param} from '@nestjs/common';
-import {ExchangeRatesService} from './app.service';
-import {Rate} from './types';
+import {ExchangeRatesService} from './exchangeRates.service';
+import {Rate} from './../types';
 
 @Controller('rates')
 export class ExchangeRatesController {

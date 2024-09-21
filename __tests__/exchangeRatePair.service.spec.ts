@@ -2,7 +2,7 @@ import {Cache, CACHE_MANAGER, CacheModule} from '@nestjs/cache-manager';
 import {Test, TestingModule} from '@nestjs/testing';
 import axios from 'axios';
 
-import {ExchangeRatesService} from '../src/app.service';
+import {ExchangeRatesService} from '../src/exchangeRates/exchangeRates.service';
 import {Rate} from '../src/types';
 import {mockRates} from './mockRates';
 

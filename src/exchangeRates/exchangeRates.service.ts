@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {Cache, CACHE_MANAGER} from '@nestjs/cache-manager';
 import {HttpException, Inject, Injectable} from '@nestjs/common';
-import {Rate} from './types';
+import {Rate} from '../types';
 
 @Injectable()
 export class ExchangeRatesService {
