@@ -1,7 +1,7 @@
 {
   "name": "exchange-rates-be",
   "version": "1.0.0",
-  "description": "Nextjs Typescript API app for exchange rates",
+  "description": "Nestjs Typescript API app for exchange rates",
   "author": "Vladislav Cherkasheninov",
   "private": true,
   "license": "MIT",
