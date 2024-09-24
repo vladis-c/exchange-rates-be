@@ -20,6 +20,7 @@ export class ConversionsController {
       ...exchangeRate,
       base_amount: +amount,
       quote_amount: exchangeRate.quote * amount,
+      opposite_quote: +(1 / exchangeRate.quote).toFixed(6),
     };
     return new Promise<ConversionRate>(res => res(conversionRate));
   }
