@@ -2,7 +2,7 @@ import {Controller, Get, Param, Query} from '@nestjs/common';
 import {ConversionsService} from '../conversions/conversions.service';
 import {ConversionRate} from '../types';
 
-@Controller('currencies')
+@Controller('conversions')
 export class ConversionsController {
   constructor(private readonly currenciesService: ConversionsService) {}
 
