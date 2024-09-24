@@ -5,3 +5,11 @@ export type Rate = {
   /** Date in a format of 'YYYY-MM-DD' */
   date: string;
 };
+
+export type ConversionRate = Pick<
+  Rate,
+  'base_currency' | 'quote_currency' | 'date'
+> & {
+  base_amount: string;
+  quote_amount: string;
+};
