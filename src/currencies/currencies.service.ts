@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {Cache, CACHE_MANAGER} from '@nestjs/cache-manager';
 import {HttpException, Inject, Injectable} from '@nestjs/common';
+import {Currency} from '../types';
 
 @Injectable()
 export class CurrenciesService {
@@ -10,15 +11,15 @@ export class CurrenciesService {
 
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
-  async getCurrencies(): Promise<string[]> {
+  async getCurrencies(): Promise<Currency[]> {
     const cacheKey = this.currenciesEndpoint;
-    const cachedCurrencies = await this.cacheManager.get<string[]>(cacheKey);
+    const cachedCurrencies = await this.cacheManager.get<Currency[]>(cacheKey);
     if (cachedCurrencies) {
       return cachedCurrencies;
     }
 
     try {
-      const {data} = await axios.get<string[]>(
+      const {data} = await axios.get<Currency[]>(
         `${this.baseUrl}/${this.currenciesEndpoint}`,
         {
           headers: {Authorization: `ApiKey ${this.apiKey}`},
