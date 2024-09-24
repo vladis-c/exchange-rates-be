@@ -14,10 +14,7 @@ export type Rate = {
   date: string;
 };
 
-export type ConversionRate = Pick<
-  Rate,
-  'base_currency' | 'quote_currency' | 'date'
-> & {
-  base_amount: string;
-  quote_amount: string;
+export type ConversionRate = Rate & {
+  base_amount: number;
+  quote_amount: number;
 };

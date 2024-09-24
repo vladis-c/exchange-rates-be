@@ -6,7 +6,6 @@ import {ExchangeRatesService} from './exchangeRates/exchangeRates.service';
 import {CurrenciesController} from './currencies/currencies.controller';
 import {CurrenciesService} from './currencies/currencies.service';
 import {ConversionsController} from './conversions/conversions.controller';
-import {ConversionsService} from './conversions/conversions.service';
 
 @Module({
   imports: [ConfigModule.forRoot(), CacheModule.register()],
@@ -15,6 +14,6 @@ import {ConversionsService} from './conversions/conversions.service';
     CurrenciesController,
     ConversionsController,
   ],
-  providers: [ExchangeRatesService, CurrenciesService, ConversionsService],
+  providers: [ExchangeRatesService, CurrenciesService],
 })
 export class AppModule {}

@@ -1,21 +1,26 @@
 import {Controller, Get, Param, Query} from '@nestjs/common';
-import {ConversionsService} from '../conversions/conversions.service';
 import {ConversionRate} from '../types';
+import {ExchangeRatesService} from '../exchangeRates/exchangeRates.service';
 
 @Controller('conversions')
 export class ConversionsController {
-  constructor(private readonly currenciesService: ConversionsService) {}
+  constructor(private readonly exchangeRatesService: ExchangeRatesService) {}
 
   @Get('/:base_currency/:quote_currency')
-  getCurrencies(
+  async getCurrencies(
     @Param('base_currency') base_currency: string,
     @Param('quote_currency') quote_currency: string,
     @Query('amount') amount: number,
   ): Promise<ConversionRate> {
-    return this.currenciesService.getCoversions(
+    const exchangeRate = await this.exchangeRatesService.getExchangeRate(
       base_currency,
       quote_currency,
-      amount,
     );
+    const conversionRate: ConversionRate = {
+      ...exchangeRate,
+      base_amount: +amount,
+      quote_amount: exchangeRate.quote * amount,
+    };
+    return new Promise<ConversionRate>(res => res(conversionRate));
   }
 }
