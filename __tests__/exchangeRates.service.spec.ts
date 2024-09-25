@@ -3,7 +3,7 @@ import {Test, TestingModule} from '@nestjs/testing';
 import axios from 'axios';
 
 import {ExchangeRatesService} from '../src/exchangeRates/exchangeRates.service';
-import {mockRates} from './mockRates';
+import {mockRates} from './mockData';
 import {Rate} from '../src/types';
 
 jest.mock('axios');

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import {ExchangeRatesService} from '../src/exchangeRates/exchangeRates.service';
 import {Rate} from '../src/types';
-import {mockRates} from './mockRates';
+import {mockRates} from './mockData';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
