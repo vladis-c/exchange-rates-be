@@ -97,3 +97,50 @@ npx jest -t <NAME_OF_THE_TEST>
 ```bash
 docker-compose up --build
 ```
+
+## Endpoints
+
+### `rates/:base_currency/:quote_currency`
+
+- Parameters
+  | Name | Type | Description |
+  | ----------- | ----------- | -----------|
+  | base_currency | String (Required) | Currency code. For example `EUR` |
+  | quote_currency | String (Required) | Currency code. For example `USD` |
+- Resource
+  | Name | Type | Description |
+  | ----------- | ----------- | -----------|
+  | base_currency | String | Currency code. For example `EUR` |
+  | quote_currency | String | Currency code. For example `USD` |
+  | quote | Number | The exchage rate between two `base_currency` and `quote_currency` |
+  | date | String | Date in a format of 'YYYY-MM-DD' |
+
+### `currencies/`
+
+- Resource array of:
+  | Name | Type | Description |
+  | ----------- | ----------- | -----------|
+  | code | String | Currency code. For example `EUR` |
+  | numeric_code | String | Currency code in numeric. For example `"784"` |
+  | decimal_digits | Number | The amount of digits in decimal part |
+  | name | String | Name of the currency. Example `Euro` |
+  | active | Boolean | If the currency is active |
+
+### `conversions/:base_currency/:quote_currency?amount=`
+
+- Parameters
+  | Name | Type | Description |
+  | ----------- | ----------- | -----------|
+  | base_currency | String (Required) | Currency code. For example `EUR` |
+  | quote_currency | String (Required) | Currency code. For example `USD` |
+  | amount | Number (Required) | The amount to convert |
+- Resource
+  | Name | Type | Description |
+  | ----------- | ----------- | -----------|
+  | base_currency | String | Currency code. For example `EUR` |
+  | quote_currency | String | Currency code. For example `USD` |
+  | quote | Number | The exchage rate between two `base_currency` and `quote_currency`|
+  | opposite_quote | Number | The exchage rate between two`quote_currency` and `base_currency` |
+  | date | String | Date in a format of 'YYYY-MM-DD' |
+  | base_amount | Number | Amount that was requested |
+  | quote_amount | Number | `amount` multiplied by `quote` = requested amount multiplied by exchange rate |
