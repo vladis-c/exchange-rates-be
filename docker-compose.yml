@@ -1,0 +1,14 @@
+services:
+  backend:
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+    env_file:
+      - ./.env
+    environment:
+      SWOP_API_KEY: ${SWOP_API_KEY}
+      SWOP_URL: ${SWOP_URL}
+    volumes:
+      - .:/app
+    command: yarn start:dev

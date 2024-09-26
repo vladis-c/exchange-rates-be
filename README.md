@@ -89,3 +89,11 @@ yarn test
 ```bash
 npx jest -t <NAME_OF_THE_TEST>
 ```
+
+## Docker
+
+1. Run in docker:
+
+```bash
+docker-compose up --build
+```
