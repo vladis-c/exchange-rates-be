@@ -13,7 +13,7 @@ export const getConversion = async <ERService extends Record<string, any>>(
       base_currency,
       quote_currency,
     );
-    // 2. if base_currency us not "EUR"
+    // 2. if base_currency is not "EUR"
   } else {
     // 2.1. get EUR to base_currency
     const eurToBaseCurrency = await exchangeRatesService.getExchangeRate(
