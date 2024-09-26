@@ -7,10 +7,9 @@ export const getConversion = async <ERService extends Record<string, any>>(
   base_currency: string,
   quote_currency: string,
 ): Promise<Rate> => {
-  let exchangeRate: Rate;
   // 1. if base currency is "EUR"
   if (base_currency === EUR) {
-    exchangeRate = await exchangeRatesService.getExchangeRate(
+    return await exchangeRatesService.getExchangeRate(
       base_currency,
       quote_currency,
     );
@@ -28,13 +27,11 @@ export const getConversion = async <ERService extends Record<string, any>>(
     );
 
     // eg: USD / AED => EUR / USD and EUR / AED
-    exchangeRate = {
+    return {
       base_currency,
       date: eurToBaseCurrency.date,
       quote: eurToQuoteCurrency.quote / eurToBaseCurrency.quote,
       quote_currency,
     };
-
-    return exchangeRate;
   }
 };
